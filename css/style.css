@@ -1,0 +1,61 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+body {
+    
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height:100vh;
+    background-color:blueviolet;
+}
+
+.container {
+    max-height: 800px;
+    max-width: 80%;
+}
+
+
+
+.btn-grid {
+    display: grid;
+}
+
+.btn {
+    
+    background-color: mediumblue;
+    border-radius: 5px ;
+    padding: 10px 20px;
+}
+
+.btn:hover {
+    border-color: black;
+}
+
+.start-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 15px 25px;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.timer {
+    position: absolute; top: 0; right: 0; width: 100px; 
+    text-align:right;
+}
