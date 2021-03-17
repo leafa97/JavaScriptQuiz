@@ -13,30 +13,6 @@ let randomQuestion, currentQuestionIndex
 startButton.addEventListener('click', startGame)
 
 
-
-    //start game
-function startGame() {
-    
-    startButton.classList.add('hide')
-    currentQuestionIndex = 0
-    for (var i = 0; i < arrayLength; i++) {
-    console.log(questions[i]);
-    
-};
-    questionContainerElement.classList.remove('hide')
-
-    //timer
-var timeLeft = 60;
-var interval = setInterval(function(){
-    document.getElementById('timer').innerHTML=timeLeft;
-    timeLeft--;
-    if (timeLeft === 0) {
-        clearInterval(interval);
-        document.getElementById('timer').innerHTML='Times up!';
-
-    }
-}, 1000);
-
 //questions
 var questions = [
     {
@@ -78,8 +54,32 @@ var questions = [
       }
 ];
 
-
 var arrayLength = questions.length;
+
+    //start game
+function startGame() {
+    
+    startButton.classList.add('hide')
+    currentQuestionIndex = 0
+    for (var i = 0; i < arrayLength; i++) {
+    questions[i]
+    
+}
+    questionContainerElement.classList.remove('hide')
+    questionContainerElement.append(questions[0].question);
+    questionContainerElement.append(answer[0].answerButtonsElement);
+
+    //timer
+var timeLeft = 60;
+var interval = setInterval(function(){
+    document.getElementById('timer').innerHTML=timeLeft;
+    timeLeft--;
+    if (timeLeft === 0) {
+        clearInterval(interval);
+        document.getElementById('timer').innerHTML='Times up!';
+
+    }
+}, 1000);
 
 
 function showQuestion(question) {
