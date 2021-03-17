@@ -3,28 +3,51 @@ const questionContainerElement = document.getElementById
 ('question-container')
 
 const questionElement = document.getElementById('question')
-const answerButtonsElement= document.getElementById('answer-buttons')
+
 //random questions
 let randomQuestions, currentQuestionIndex
 
 
 startButton.addEventListener('click', startGame)
 
-//start game
+//event listener
+document.querySelector("answerButtons").addEventListener("click", function(){
+
+});
+
+var arrayLength = questions.length;
+    //start game
 function startGame() {
     
     startButton.classList.add('hide')
-    randomQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
+    for (var i = 0; i < arrayLength; i++) {
+    console.log(questions[i]);
+    
+};
     questionContainerElement.classList.remove('hide')
+
+    //timer
+var timeLeft = 60;
+var interval = setInterval(function(){
+    document.getElementById('timer').innerHTML=timeLeft;
+    timeLeft--;
+    if (timeLeft === 0) {
+        clearInterval(interval);
+        document.getElementById('timer').innerHTML='Done';
+
+    }
+}, 1000);
+//set next question
+randomQuestions = questions.sort(() => Math.random - 0.5)
+currentQuestionIndex = 0
     setNextQuestion()
 }
 
-//next question
 function setNextQuestion() {
-    resetState()
-    showQuestion(randomQuestions[currentQuestionIndex])
+    showQuestion(randomQuestion[currentQuestionIndex])
 }
+
 
 function showQuestion(question) {
     questionElement.innerText= question.question
@@ -40,84 +63,45 @@ function showQuestion(question) {
     })
 }
 
-function resetState() {
-    while (answerButtonsElement.firstChild) {
-        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-    }
-}
 
-//select answer
-function selectAnswer(e) {
-    const selectedButton = e.target
-    const correct = selectedButton.dataset.correct
-    setStatusClass(document.body, correct)
-    Array.from(answerButtonsElement.children).forEach(button => {
-        setStatusClass(button, button.dataset.correct)
-    })
-    if (randomQuestions.length < currentQuestionIndex + 1) {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
-    }
-}
-
-function setStatusClass(element, correct) {
-clearStatusClass(element)
-if (correct) {
-    element.classList.add('correct')
-} else {
-    element.classList.add('wrong')
-}
-}
-
-function clearStatusClass(element) {
-    element.classList.remove('correct')
-    element.classList.remove('wrong')
-}
-//timer
 
 //questions
 var questions = [
     {
-        question: 'What is JavaScript?',
-        answers: [
-            {text: "A coding language", correct= true },
-            {text: "ghjgkjjj", correct= false}
-        ]
-    },
-    {
-        question: 'How do you format a function?',
-        answers: [
-            {
-             text: 'A coding language', correct= true },
-             {text: "ghjgkjjj", correct= false}
-        ]
-    },
-    {
-        question: 'Where is local storage stored?',
-        answers: [
-            {
-             text: 'A coding language', correct= true },
-             {text: "ghjgkjjj", correct= false}
-        ]
-    },
-    {
-        question: 'What is JavaScript?',
-        answers:[
-            {
-             text: 'A coding language', correct= true },
-             {text: "ghjgkjjj", correct= false}
-        ]
-    }
-]
+        question: "Who invented JavaScript?",
+        answer: {
+          a: "Douglas Crockford",
+          b: "Sheryl Sandberg",
+          c: "Brendan Eich"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "JavaScript can do all of the following except:",
+        answer: {
+          a: "Read or write to files",
+          b: "Create web applications",
+          c: "Brendan Eich"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "Who invented JavaScript?",
+        answer: {
+          a: "Douglas Crockford",
+          b: "Sheryl Sandberg",
+          c: "Brendan Eich"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "Who invented JavaScript?",
+        answer: {
+          a: "Douglas Crockford",
+          b: "Sheryl Sandberg",
+          c: "Brendan Eich"
+        },
+        correctAnswer: "c"
+      }
+];
 
-//timer
-var timeLeft = 60;
-var interval = setInterval(function(){
-    document.getElementById('timer').innerHTML=timeLeft;
-    timeLeft--;
-    if (timeLeft === 0) {
-        clearInterval(interval);
-        document.getElementById('timer').innerHTML='Done';
-
-    }
-}, 1000);
