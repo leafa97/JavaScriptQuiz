@@ -1,21 +1,19 @@
 const startButton = document.getElementById('start-btn')
 const questionContainerElement = document.getElementById
 ('question-container')
+const answerButtonsElement = document.getElementById('answerButtons')
 
 const questionElement = document.getElementById('question')
 
+
 //random questions
-let randomQuestions, currentQuestionIndex
+let randomQuestion, currentQuestionIndex
 
 
 startButton.addEventListener('click', startGame)
 
-//event listener
-document.querySelector("answerButtons").addEventListener("click", function(){
 
-});
 
-var arrayLength = questions.length;
     //start game
 function startGame() {
     
@@ -34,36 +32,10 @@ var interval = setInterval(function(){
     timeLeft--;
     if (timeLeft === 0) {
         clearInterval(interval);
-        document.getElementById('timer').innerHTML='Done';
+        document.getElementById('timer').innerHTML='Times up!';
 
     }
 }, 1000);
-//set next question
-randomQuestions = questions.sort(() => Math.random - 0.5)
-currentQuestionIndex = 0
-    setNextQuestion()
-}
-
-function setNextQuestion() {
-    showQuestion(randomQuestion[currentQuestionIndex])
-}
-
-
-function showQuestion(question) {
-    questionElement.innerText= question.question
-    question.answers.forEach(answers => {
-        const button = document.createElement('button')
-        button.innerText = answers.text
-        button.classList.add('btn')
-        if (answers.correct) {
-            button.dataset.correct = answers.correct
-        }
-        button.addEventListener('click', selectAnswer)
-        answerButtonsElement.appendChild(button)
-    })
-}
-
-
 
 //questions
 var questions = [
@@ -72,7 +44,8 @@ var questions = [
         answer: {
           a: "Douglas Crockford",
           b: "Sheryl Sandberg",
-          c: "Brendan Eich"
+          c: "Brendan Eich",
+          d: "Thomas Edison"
         },
         correctAnswer: "c"
       },
@@ -104,4 +77,40 @@ var questions = [
         correctAnswer: "c"
       }
 ];
+
+
+var arrayLength = questions.length;
+
+
+function showQuestion(question) {
+    questionElement.innerText= question.question
+    questions.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        button.addEventListener('click', function(evt) {
+            console.log('clicked the button')
+        })
+        answerButtonsElement.appendChild(button)
+    })
+}
+
+//answer clicked
+function answerPicked() {
+    document.getElementById("answerClicked").innerHTML = "You clicked me!";
+    //event listener
+document.getElementById("answerClicked").addEventListener("click" , answerPicked);
+    setNextQuestion
+}
+
+//set next question
+function setNextQuestion() {
+    showQuestion(randomQuestion[currentQuestionIndex])
+
+randomQuestion = questions.sort(() => Math.random - 0.5)
+currentQuestionIndex = 0
+    setNextQuestion()
+}
+}
+
 
